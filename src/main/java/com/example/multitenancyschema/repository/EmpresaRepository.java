@@ -1,4 +1,4 @@
-package com.example.multitenancyschema.service;
+package com.example.multitenancyschema.repository;
 
 import com.example.multitenancyschema.model.Empresa;
 import org.springframework.data.jpa.repository.JpaRepository;

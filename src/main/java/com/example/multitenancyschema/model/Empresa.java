@@ -20,7 +20,7 @@ public class Empresa implements Serializable {
 	private static final long serialVersionUID = -6470060645419408897L;
 
 	@Id
-	@GeneratedValue(generator = "generator", strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="codigo", length = 20, nullable = false)
 	private Long codigo;
 
@@ -42,5 +42,5 @@ public class Empresa implements Serializable {
 		this.cnpj = record.cnpj();
 		this.emailAdministrador = record.emailAdministrador();
 	}
-	
+
 }

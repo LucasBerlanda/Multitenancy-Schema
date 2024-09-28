@@ -1,10 +1,8 @@
-package br.com.academia.controller;
+package com.example.multitenancyschema.controller;
 
-import br.com.academia.dto.EmpresaRecord;
-import br.com.academia.model.Contato;
-import br.com.academia.model.Empresa;
-import br.com.academia.repository.ContatoRepository;
-import br.com.academia.service.EmpresaService;
+import com.example.multitenancyschema.model.Empresa;
+import com.example.multitenancyschema.records.EmpresaRecord;
+import com.example.multitenancyschema.service.EmpresaService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +14,6 @@ import java.util.List;
 public class EmpresaController {
 
     private EmpresaService empresaService;
-    private ContatoRepository contatoRepository;
 
     @PostMapping("/salvar")
     public Empresa salvar(@RequestBody EmpresaRecord record){
@@ -29,13 +26,4 @@ public class EmpresaController {
     }
 
 
-    @PostMapping("/salvar-contato")
-    public Contato salvarContatoTest(@RequestBody Contato contato){
-        return contatoRepository.save(contato);
-    }
-
-    @GetMapping("/buscar-contatos")
-    public List<Contato> buscarContatos(){
-        return contatoRepository.findAll();
-    }
 }
