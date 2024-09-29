@@ -7,7 +7,7 @@ public class TenantContext {
     private static final ThreadLocal<String> currentTenant = ThreadLocal.withInitial(() -> DEFAULT_SCHEMA);
 
     public static void setCurrentTenant(String tenant) {
-        currentTenant.set(tenant);
+        currentTenant.set("empresa_%s".formatted(tenant));
     }
 
     public static String getCurrentTenant() {

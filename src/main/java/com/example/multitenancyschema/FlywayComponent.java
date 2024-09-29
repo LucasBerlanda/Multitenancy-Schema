@@ -12,7 +12,7 @@ public class FlywayComponent {
         Flyway flyway = Flyway.configure()
                 .locations("db/migration/empresas")
                 .dataSource(dataSource)
-                .schemas(schema)
+                .schemas("empresa_%s".formatted(schema))
                 .load();
         flyway.migrate();
     }
