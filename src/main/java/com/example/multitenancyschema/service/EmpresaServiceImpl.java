@@ -1,23 +1,29 @@
 package com.example.multitenancyschema.service;
 
+import com.example.multitenancyschema.FlywayComponent;
 import com.example.multitenancyschema.model.Empresa;
 import com.example.multitenancyschema.repository.EmpresaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.sql.DataSource;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class EmpresaServiceImpl implements EmpresaService {
 
-    @Autowired
     private EmpresaRepository repository;
+    private FlywayComponent flywayComponent;
+    private DataSource dataSource;
 
     @Override
     @Transactional
     public Empresa salvar(Empresa empresa) {
-        return repository.save(empresa);
+        Empresa empresaSalva = repository.save(empresa);
+        flywayComponent.executeMigrationsForSchema(String.valueOf(empresaSalva.getCodigo()), dataSource);
+        return empresaSalva;
     }
 
     @Override
